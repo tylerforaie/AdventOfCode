@@ -1,39 +1,33 @@
 package main
 
 import (
-	"bufio"
+	_ "embed"
 	"fmt"
 	"log"
-	"os"
 	"strconv"
+	"strings"
 )
 
+//go:embed dayOne/input.in
+var input string
+
 func DayOnePartOne() {
-	file, err := os.Open("dayOne/input.in")
 	elves := make([]elf, 0)
 	items := make([]int, 0)
 
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		if scanner.Text() == "" {
-			elf := NewElf(items)
-			elves = append(elves, *elf)
-			items = nil
-			continue
-		} else {
-			value := scanner.Text()
+	input = strings.TrimRight(input, "\r\n")
+	for _, value := range strings.Split(input, "\r\n") {
+		if value != "" {
 			convertedValue, err := strconv.Atoi(value)
 			if err != nil {
 				log.Fatal(err)
 			}
 			items = append(items, convertedValue)
+		} else {
+			elf := NewElf(items)
+			elves = append(elves, *elf)
+			items = nil
 		}
-
 	}
 
 	max := 0
