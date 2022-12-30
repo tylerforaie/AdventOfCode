@@ -22,8 +22,8 @@ func DayOnePartOne() {
 			max = weight
 		}
 	}
-
-	fmt.Printf("Max calories is %d \r\n", max)
+	output := fmt.Sprintf("Day One Part One: %d", max)
+	fmt.Println(output)
 }
 
 func DayOnePartTwo() {
@@ -43,7 +43,8 @@ func DayOnePartTwo() {
 		maxWeights += weights[i]
 	}
 
-	fmt.Printf("Sum of top 3 elves: %d", maxWeights)
+	output := fmt.Sprintf("Day One Part Two: %d", maxWeights)
+	fmt.Println(output)
 }
 
 func main() {
