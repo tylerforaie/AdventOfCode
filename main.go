@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./AdventOfCode/dayOne"
+	"github.com/tylerforaie/AdventOfCode/dayOne"
 )
 
 func main() {
