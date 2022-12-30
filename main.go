@@ -12,23 +12,7 @@ import (
 var input string
 
 func DayOnePartOne() {
-	elves := make([]elf, 0)
-	items := make([]int, 0)
-
-	input = strings.TrimRight(input, "\r\n")
-	for _, value := range strings.Split(input, "\r\n") {
-		if value != "" {
-			convertedValue, err := strconv.Atoi(value)
-			if err != nil {
-				log.Fatal(err)
-			}
-			items = append(items, convertedValue)
-		} else {
-			elf := NewElf(items)
-			elves = append(elves, *elf)
-			items = nil
-		}
-	}
+	elves := ParseInput(input)
 
 	max := 0
 	for _, value := range elves {
@@ -65,4 +49,26 @@ func NewElf(itemList []int) *elf {
 	e.weight = e.calculateWeight()
 
 	return e
+}
+
+func ParseInput(input string) []elf {
+	elves := make([]elf, 0)
+	items := make([]int, 0)
+
+	input = strings.TrimRight(input, "\r\n")
+	for _, value := range strings.Split(input, "\r\n") {
+		if value != "" {
+			convertedValue, err := strconv.Atoi(value)
+			if err != nil {
+				log.Fatal(err)
+			}
+			items = append(items, convertedValue)
+		} else {
+			elf := NewElf(items)
+			elves = append(elves, *elf)
+			items = nil
+		}
+	}
+
+	return elves
 }
